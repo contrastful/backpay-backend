@@ -45,4 +45,18 @@ class ApiController extends AbstractController
             }, $places)
         ]);
     }
+
+    /**
+     * @Route("/place_detail/{placeId}", name="placeDetail")
+     */
+    public function getPlaceDetail(int $placeId)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $place = $em->getRepository(Place::class)->find($placeId);
+
+        return $this->json([
+            'place' => PlaceTransformer::detail($place)
+        ]);
+    }
 }
