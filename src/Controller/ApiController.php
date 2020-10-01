@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Place;
+use App\Entity\User;
 use CategoryTransformer;
 use PlaceTransformer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
