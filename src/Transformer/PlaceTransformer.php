@@ -29,7 +29,25 @@ class PlaceTransformer {
                 'title' => $category->getTitle(),
                 'icon' => $category->getIcon(),
             ],
-            'about' => $place->getAbout()
+            'about' => $place->getAbout(),
+            'coverImage' => $place->getCoverImage(),
+            'perks' => $place->getPerks() ? array_map(function ($perk) {
+                return [
+                    'id' => $perk->getId(),
+                    'icon' => $perk->getIcon(),
+                    'description' => $perk->getDescription(),
+                ];
+            }, $place->getPerks()->toArray()) : null,
+            'images' => array_map(function ($image) {
+                return [
+                    'id' => $image->getId(),
+                    'source' => $image->getSource(),
+                    'label' => $image->getLabel()
+                ];
+            }, $place->getImages()->toArray()),
+            'instagram' => $place->getInstagramLink(),
+            'facebook' => $place->getFacebookLink(),
+            'googleMaps' => $place->getGoogleMapsLink()
         ];
     }
 }
