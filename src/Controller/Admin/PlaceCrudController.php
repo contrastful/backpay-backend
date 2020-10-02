@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -25,7 +26,7 @@ class PlaceCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title'),
             TextField::new('subtitle')->hideOnIndex(),
-            TextEditorField::new('about')->hideOnIndex(),
+            TextareaField::new('about')->hideOnIndex(),
             NumberField::new('latitude')->hideOnIndex(),
             NumberField::new('longitude')->hideOnIndex(),
             AssociationField::new('category'),
