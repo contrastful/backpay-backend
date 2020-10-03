@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Transformer;
+
 use App\Entity\Place;
 
 class PlaceTransformer {
