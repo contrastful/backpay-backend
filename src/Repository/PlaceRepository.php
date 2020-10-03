@@ -19,10 +19,19 @@ class PlaceRepository extends ServiceEntityRepository
         parent::__construct($registry, Place::class);
     }
 
-    public function findApproved($limit = null, $offset = 0)
+    public function findApproved($limit = null, $offset = 0, $areaSlug = null)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.approvedAt IS NOT NULL')
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.approvedAt IS NOT NULL');
+        
+        if ($areaSlug) {
+            $qb
+                ->join('p.area', 'a')
+                ->andWhere('a.slug = :areaSlug')
+                ->setParameter('areaSlug', $areaSlug);
+        }
+
+        return $qb
             ->orderBy('p.id', 'ASC')
             ->setMaxResults($limit)
             ->setFirstResult($offset)

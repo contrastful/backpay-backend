@@ -90,6 +90,11 @@ class Place
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="places")
+     */
+    private $area;
+
     public function __construct()
     {
         $this->perks = new ArrayCollection();
@@ -298,6 +303,18 @@ class Place
                 $image->setPlace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getArea(): ?Area
+    {
+        return $this->area;
+    }
+
+    public function setArea(?Area $area): self
+    {
+        $this->area = $area;
 
         return $this;
     }

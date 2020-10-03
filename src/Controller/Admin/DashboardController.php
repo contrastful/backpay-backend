@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Area;
 use App\Entity\Category;
 use App\Entity\Image;
 use App\Entity\Perk;
@@ -37,5 +38,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Perks', null, Perk::class);
         yield MenuItem::linkToCrud('Images', null, Image::class);
         yield MenuItem::linkToCrud('Categories', null, Category::class);
+        yield MenuItem::linkToCrud('Areas', null, Area::class);
     }
 }

@@ -8,6 +8,7 @@ use App\Entity\User;
 use CategoryTransformer;
 use PlaceTransformer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -34,11 +35,11 @@ class ApiController extends AbstractController
     /**
      * @Route("/places", name="places")
      */
-    public function getPlaces()
+    public function getPlaces(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $places = $em->getRepository(Place::class)->findApproved();
+        $places = $em->getRepository(Place::class)->findApproved(null, null, $request->query->get('areaSlug', null));
 
         return $this->json([
             'places' => array_map(function($place) {
