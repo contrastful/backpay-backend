@@ -27,12 +27,6 @@ class Image
      */
     private $label;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Place::class, inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $place;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -58,18 +52,6 @@ class Image
     public function setLabel(string $label): self
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    public function getPlace(): ?Place
-    {
-        return $this->place;
-    }
-
-    public function setPlace(?Place $place): self
-    {
-        $this->place = $place;
 
         return $this;
     }

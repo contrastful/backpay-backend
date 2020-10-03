@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Area;
 use App\Entity\Category;
 use App\Entity\Place;
 use App\Entity\User;
+use AreaTransformer;
 use CategoryTransformer;
 use PlaceTransformer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,18 +19,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     /**
-     * @Route("/categories", name="categories")
+     * @Route("/categories_and_areas", name="categoriesAndAreas")
      */
     public function getCategories()
     {
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository(Category::class)->findAll();
+        $areas = $em->getRepository(Area::class)->findAll();
 
         return $this->json([
             'categories' => array_map(function($category) {
                 return CategoryTransformer::preview($category);
-            }, $categories)
+            }, $categories),
+            'areas' => array_map(function($area) {
+                return AreaTransformer::preview($area);
+            }, $areas)
         ]);
     }
 

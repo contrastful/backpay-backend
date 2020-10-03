@@ -59,11 +59,6 @@ class Place
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $approvedAt;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $coverImage;
     
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -86,14 +81,19 @@ class Place
     private $perks;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="place")
+     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="places")
+     */
+    private $area;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Image::class)
      */
     private $images;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Area::class, inversedBy="places")
+     * @ORM\ManyToOne(targetEntity=Image::class)
      */
-    private $area;
+    private $coverImage;
 
     public function __construct()
     {
@@ -202,18 +202,6 @@ class Place
         return $this;
     }
 
-    public function getCoverImage(): ?string
-    {
-        return $this->coverImage;
-    }
-
-    public function setCoverImage(?string $coverImage): self
-    {
-        $this->coverImage = $coverImage;
-
-        return $this;
-    }
-
     public function getInstagramLink(): ?string
     {
         return $this->instagramLink;
@@ -276,6 +264,18 @@ class Place
         return $this;
     }
 
+    public function getArea(): ?Area
+    {
+        return $this->area;
+    }
+
+    public function setArea(?Area $area): self
+    {
+        $this->area = $area;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Image[]
      */
@@ -288,7 +288,6 @@ class Place
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
-            $image->setPlace($this);
         }
 
         return $this;
@@ -298,23 +297,19 @@ class Place
     {
         if ($this->images->contains($image)) {
             $this->images->removeElement($image);
-            // set the owning side to null (unless already changed)
-            if ($image->getPlace() === $this) {
-                $image->setPlace(null);
-            }
         }
 
         return $this;
     }
 
-    public function getArea(): ?Area
+    public function getCoverImage(): ?Image
     {
-        return $this->area;
+        return $this->coverImage;
     }
 
-    public function setArea(?Area $area): self
+    public function setCoverImage(?Image $coverImage): self
     {
-        $this->area = $area;
+        $this->coverImage = $coverImage;
 
         return $this;
     }

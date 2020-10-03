@@ -34,10 +34,10 @@ class PlaceCrudController extends AbstractCrudController
             AssociationField::new('perks')->hideOnIndex(),
             NumberField::new('longitude')->hideOnIndex(),
             DateTimeField::new('approvedAt'),
-            UrlField::new('coverImage')->hideOnIndex(),
             UrlField::new('googleMapsLink')->hideOnIndex(),
             UrlField::new('instagramLink')->hideOnIndex(),
             UrlField::new('facebookLink')->hideOnIndex(),
+            AssociationField::new('coverImage')->hideOnIndex(),
             AssociationField::new('images')->hideOnIndex()
         ];
     }

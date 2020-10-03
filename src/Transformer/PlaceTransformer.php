@@ -30,7 +30,7 @@ class PlaceTransformer {
                 'icon' => $category->getIcon(),
             ],
             'about' => $place->getAbout(),
-            'coverImage' => $place->getCoverImage(),
+            'coverImage' => $place->getCoverImage() ? $place->getCoverImage()->getSource() : null,
             'perks' => $place->getPerks() ? array_map(function ($perk) {
                 return [
                     'id' => $perk->getId(),
