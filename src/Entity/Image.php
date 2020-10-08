@@ -27,6 +27,10 @@ class Image
      */
     private $label;
 
+    public function __construct() {
+        $this->source = 'https://zdola.sk/images/';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -28,17 +28,18 @@ class PlaceCrudController extends AbstractCrudController
             TextField::new('subtitle')->hideOnIndex(),
             AssociationField::new('area'),
             TextareaField::new('about')->hideOnIndex(),
-            NumberField::new('latitude')->hideOnIndex(),
-            NumberField::new('longitude')->hideOnIndex(),
+            TextField::new('latitude')->hideOnIndex(),
+            TextField::new('longitude')->hideOnIndex(),
+            NumberField::new('priority'),
             AssociationField::new('category'),
             AssociationField::new('perks')->hideOnIndex(),
-            NumberField::new('longitude')->hideOnIndex(),
             DateTimeField::new('approvedAt'),
             UrlField::new('googleMapsLink')->hideOnIndex(),
             UrlField::new('instagramLink')->hideOnIndex(),
             UrlField::new('facebookLink')->hideOnIndex(),
             AssociationField::new('coverImage')->hideOnIndex(),
-            AssociationField::new('images')->hideOnIndex()
+            AssociationField::new('images')->hideOnIndex(),
+            TextField::new('suggestionName')->hideOnIndex()
         ];
     }
 }

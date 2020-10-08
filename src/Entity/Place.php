@@ -95,10 +95,32 @@ class Place
      */
     private $coverImage;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $suggestionAddress;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $suggestionPerks;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $suggestionName;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $priority;
+
     public function __construct()
     {
         $this->perks = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        $this->priority = 0;
     }
 
     public function getId(): ?int
@@ -310,6 +332,54 @@ class Place
     public function setCoverImage(?Image $coverImage): self
     {
         $this->coverImage = $coverImage;
+
+        return $this;
+    }
+
+    public function getSuggestionAddress(): ?string
+    {
+        return $this->suggestionAddress;
+    }
+
+    public function setSuggestionAddress(?string $suggestionAddress): self
+    {
+        $this->suggestionAddress = $suggestionAddress;
+
+        return $this;
+    }
+
+    public function getSuggestionPerks(): ?string
+    {
+        return $this->suggestionPerks;
+    }
+
+    public function setSuggestionPerks(?string $suggestionPerks): self
+    {
+        $this->suggestionPerks = $suggestionPerks;
+
+        return $this;
+    }
+
+    public function getSuggestionName(): ?string
+    {
+        return $this->suggestionName;
+    }
+
+    public function setSuggestionName(?string $suggestionName): self
+    {
+        $this->suggestionName = $suggestionName;
+
+        return $this;
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(int $priority): self
+    {
+        $this->priority = $priority;
 
         return $this;
     }

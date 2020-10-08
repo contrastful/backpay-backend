@@ -49,7 +49,8 @@ class PlaceTransformer {
             }, $place->getImages()->toArray()),
             'instagram' => $place->getInstagramLink(),
             'facebook' => $place->getFacebookLink(),
-            'googleMaps' => $place->getGoogleMapsLink()
+            'googleMaps' => $place->getGoogleMapsLink(),
+            'recommendedBy' => $place->getSuggestionName()
         ];
     }
 }

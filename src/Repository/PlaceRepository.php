@@ -32,7 +32,7 @@ class PlaceRepository extends ServiceEntityRepository
         }
 
         return $qb
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('p.priority', 'DESC')
             ->setMaxResults($limit)
             ->setFirstResult($offset)
             ->getQuery()
