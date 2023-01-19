@@ -1,6 +1,6 @@
 # Backpay Backend
 
-An admin panel and API for `contrastful/backpay`. Built in Symfony 5 with EasyAdminBundle.
+An admin panel and API for `contrastful/backpay`. Built in Symfony 5 with Doctrine ORM and EasyAdminBundle.
 
 ## Features
 - Manages a database of locations for any community-based map.
